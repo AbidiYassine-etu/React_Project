@@ -12,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "users")
 public class User {
     @Id
@@ -22,5 +23,4 @@ public class User {
     private String email;
     private String password;
     private String adresse;
-    private Roles role;
 }

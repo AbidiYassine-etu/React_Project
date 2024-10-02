@@ -12,21 +12,21 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "évaluation" )
-public class Evaluation {
+@Table(name = "feuilles")
+public class Feuille_Temps {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String date_Eval;
-    private String note_Eval;
-    private String commantaire;
-
-    @ManyToOne
-    @JoinColumn(name = "employée_id")
-    private Employée employee;
+    private String date_Feuille;
+    private String sujet_Feuille;
+    private String commantaire_feuille;
 
     @ManyToOne
     @JoinColumn(name = "rh_id")
-    private Admin_RH adminRH;
+    private Admin_RH Admin_rh;
+
+    @OneToOne
+    @JoinColumn(name = "employée_id")
+    private Employée employée_id;
 }

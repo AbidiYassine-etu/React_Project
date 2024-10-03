@@ -45,4 +45,25 @@ public class FeuilleTempsServiceImpl implements FeuilleTempsService {
     public List<Feuille_Temps> findAllFeuilles() {
         return feuilleTempsRepository.findAll();
     }
+
+    @Override
+    public Feuille_Temps approuverFeuille(int id) {
+        Feuille_Temps feuille = findFeuilleByID(id);
+        if (feuille != null) {
+            feuille.setStatut("APPROUVE");  // Modifier le statut à "APPROUVE"
+            return feuilleTempsRepository.save(feuille);
+        }
+        return null;
+    }
+    
+    @Override
+    public Feuille_Temps rejeterFeuille(int id) {
+        Feuille_Temps feuille = findFeuilleByID(id);
+        if (feuille != null) {
+            feuille.setStatut("REJETE");  // Modifier le statut à "REJETE"
+            return feuilleTempsRepository.save(feuille);
+        }
+        return null;
+    }
+
 }

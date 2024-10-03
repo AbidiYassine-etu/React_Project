@@ -45,4 +45,12 @@ public class EvaluationServiceImpl implements EvaluationService {
     public List<Evaluation> findAllEvaluations() {
         return evaluationRepository.findAll();
     }
+
+    @Override
+    public List<Evaluation> findEvaluationsByEmployee(Long employeeId) {
+        return evaluationRepository.findByEmployeeId(employeeId);
+    }
+
+    
 }
+

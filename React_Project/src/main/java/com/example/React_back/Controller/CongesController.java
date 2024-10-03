@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/conges")  // Endpoint de base pour les congés
+@RequestMapping("/api/conges")
 public class CongesController {
 
     @Autowired
@@ -52,5 +52,27 @@ public class CongesController {
     public ResponseEntity<Void> deleteConges(@PathVariable int id) {
         congesService.deleteConges(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    
+    @PutMapping("/approuver/{id}")
+    public ResponseEntity<Conges> approuverConges(@PathVariable int id) {
+        Conges conge = congesService.approuverConges(id);
+        if (conge != null) {
+            return new ResponseEntity<>(conge, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    
+    @PutMapping("/rejeter/{id}")
+    public ResponseEntity<Conges> rejeterConges(@PathVariable int id) {
+        Conges conge = congesService.rejeterConges(id);
+        if (conge != null) {
+            return new ResponseEntity<>(conge, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

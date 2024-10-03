@@ -10,4 +10,6 @@ public interface FeuilleTempsService {
     Feuille_Temps updateFeuille(Feuille_Temps feuille);
     void deleteFeuille(int id);
     List<Feuille_Temps> findAllFeuilles();
+    Feuille_Temps approuverFeuille(int id);
+    Feuille_Temps rejeterFeuille(int id);
 }

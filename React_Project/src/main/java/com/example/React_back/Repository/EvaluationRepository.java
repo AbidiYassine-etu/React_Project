@@ -1,10 +1,13 @@
 package com.example.React_back.Repository;
 
 import com.example.React_back.Models.Evaluation;
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EvaluationRepository extends JpaRepository<Evaluation, Integer> {
-    // D'autres méthodes de recherche personnalisées peuvent être ajoutées ici si nécessaire
+    List<Evaluation> findByEmployeeId(Long employeeId);  
 }

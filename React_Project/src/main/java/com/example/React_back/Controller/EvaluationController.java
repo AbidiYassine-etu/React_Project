@@ -53,4 +53,13 @@ public class EvaluationController {
         evaluationService.deleteEvaluation(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    public ResponseEntity<List<Evaluation>> getEvaluationsByEmployee(@PathVariable Long employeId) {
+        List<Evaluation> evaluations = evaluationService.findEvaluationsByEmployee(employeId);
+        if (evaluations != null && !evaluations.isEmpty()) {
+            return new ResponseEntity<>(evaluations, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

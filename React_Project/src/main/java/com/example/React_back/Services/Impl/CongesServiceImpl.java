@@ -23,6 +23,7 @@ public class CongesServiceImpl implements CongesService {
 
     @Override
     public Conges addConges(Conges conge) {
+        conge.setStatut("EN_ATTENTE");  
         return congesRepository.save(conge);
     }
 
@@ -44,5 +45,25 @@ public class CongesServiceImpl implements CongesService {
     @Override
     public List<Conges> findAllConges() {
         return congesRepository.findAll();
+    }
+
+    @Override
+    public Conges approuverConges(int id) {
+        Conges conge = findCongesByID(id);
+        if (conge != null) {
+            conge.setStatut("APPROUVE");  
+            return congesRepository.save(conge);
+        }
+        return null;
+    }
+
+    @Override
+    public Conges rejeterConges(int id) {
+        Conges conge = findCongesByID(id);
+        if (conge != null) {
+            conge.setStatut("REJETE");  
+            return congesRepository.save(conge);
+        }
+        return null;
     }
 }

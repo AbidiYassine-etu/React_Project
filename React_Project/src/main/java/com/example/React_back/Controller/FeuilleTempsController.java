@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/feuille-temps")  // Endpoint de base pour les feuilles de temps
+@RequestMapping("/api/feuille-temps")  
 public class FeuilleTempsController {
 
     @Autowired
@@ -18,39 +18,65 @@ public class FeuilleTempsController {
 
     @GetMapping
     public List<Feuille_Temps> getAllFeuilles() {
-        return feuilleTempsService.findAllFeuilles();  // Récupérer toutes les feuilles de temps
+        return feuilleTempsService.findAllFeuilles(); 
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Feuille_Temps> getFeuilleById(@PathVariable int id) {
         Feuille_Temps feuille = feuilleTempsService.findFeuilleByID(id);
         if (feuille != null) {
-            return new ResponseEntity<>(feuille, HttpStatus.OK);  // Retourner la feuille trouvée
+            return new ResponseEntity<>(feuille, HttpStatus.OK);  
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);  // Retourner 404 si pas trouvée
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);  
         }
     }
 
     @PostMapping
     public ResponseEntity<Feuille_Temps> createFeuille(@RequestBody Feuille_Temps feuille) {
         Feuille_Temps createdFeuille = feuilleTempsService.addFeuille(feuille);
-        return new ResponseEntity<>(createdFeuille, HttpStatus.CREATED);  // Retourner 201 pour une création réussie
+        return new ResponseEntity<>(createdFeuille, HttpStatus.CREATED);  
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Feuille_Temps> updateFeuille(@PathVariable int id, @RequestBody Feuille_Temps feuille) {
-        feuille.setId(id);  // Mettre à jour l'ID de la feuille
+        feuille.setId(id);  
         Feuille_Temps updatedFeuille = feuilleTempsService.updateFeuille(feuille);
         if (updatedFeuille != null) {
-            return new ResponseEntity<>(updatedFeuille, HttpStatus.OK);  // Retourner la feuille mise à jour
+            return new ResponseEntity<>(updatedFeuille, HttpStatus.OK);  
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);  // Retourner 404 si pas trouvée
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteFeuille(@PathVariable int id) {
-        feuilleTempsService.deleteFeuille(id);  // Supprimer la feuille par ID
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);  // Retourner 204 pour une suppression réussie
+        feuilleTempsService.deleteFeuille(id);  
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);  
+    }
+
+    
+     @PutMapping("/approuver/{id}")
+    public ResponseEntity<Feuille_Temps> approuverFeuille(@PathVariable int id) {
+         Feuille_Temps feuille = feuilleTempsService.approuverFeuille(id);
+    if (feuille != null) {
+        return new ResponseEntity<>(feuille, HttpStatus.OK);
+    } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
+
+
+      @PutMapping("/rejeter/{id}")
+    public ResponseEntity<Feuille_Temps> rejeterFeuille(@PathVariable int id) {
+         Feuille_Temps feuille = feuilleTempsService.rejeterFeuille(id);
+    if (feuille != null) {
+        return new ResponseEntity<>(feuille, HttpStatus.OK);
+    } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+}
+
+}
+
+
+    

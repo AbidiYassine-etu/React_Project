@@ -10,4 +10,6 @@ public interface CongesService {
     Conges updateConges(Conges conge);
     void deleteConges(int id);
     List<Conges> findAllConges();
+    Conges approuverConges(int id); 
+    Conges rejeterConges(int id);  
 }

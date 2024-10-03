@@ -1,6 +1,5 @@
 package com.example.React_back.Models;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,15 +17,17 @@ public class Feuille_Temps {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String date_Feuille;
-    private String sujet_Feuille;
-    private String commantaire_feuille;
+    private String dateFeuille;  
+    private String sujetFeuille; 
+    private String commentaireFeuille;  
 
     @ManyToOne
     @JoinColumn(name = "rh_id")
-    private Admin_RH Admin_rh;
+    private Admin_RH adminRH;  
 
-    @OneToOne
-    @JoinColumn(name = "employée_id")
-    private Employée employée_id;
+    @ManyToOne
+    @JoinColumn(name = "employe_id")  
+    private Employe employe;  
+
+    private String statut;
 }

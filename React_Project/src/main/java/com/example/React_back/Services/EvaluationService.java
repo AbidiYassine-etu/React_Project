@@ -10,4 +10,5 @@ public interface EvaluationService {
     Evaluation updateEvaluation(Evaluation evaluation);
     void deleteEvaluation(int id);
     List<Evaluation> findAllEvaluations();
+    List<Evaluation> findEvaluationsByEmployee(Long employeeId);
 }
